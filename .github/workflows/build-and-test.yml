@@ -21,6 +21,9 @@ jobs:
 
       - name: Build application
         run: npm run build 
+      
+      - name: Remove excisting android platform
+        run: npm run cap:remove:android:platform
   
       - name: Add android platform
         run: npx cap add android
