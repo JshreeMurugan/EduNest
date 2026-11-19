@@ -23,7 +23,7 @@ jobs:
         run: npm run build 
   
       - name: Add android platform
-        run: ionic cap add android
+        run: npx cap add android
       
       - name: Build android platform
         run: npm run cap:build:android
