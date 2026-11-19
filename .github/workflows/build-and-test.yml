@@ -1,6 +1,8 @@
 name: Application Test and Build
 on: 
-  workflow_dispatch:
+  push:
+    branches:
+      - js-edunest-android-config
 jobs:
   build-and-test:
     runs-on: macos-latest
