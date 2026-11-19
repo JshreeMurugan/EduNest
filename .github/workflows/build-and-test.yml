@@ -4,7 +4,7 @@ on:
     branches:
       - js-edunest-android-config
 jobs:
-  build-and-test:
+  build-android:
     runs-on: macos-latest
     steps:
       - name: Checkout code
@@ -33,12 +33,22 @@ jobs:
       - name: Build android platform
         run: npm run cap:build:android
 
-      - name: upload debug build to firebase app distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{ secrets.FIREBASE_APP_ID }}
-          token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-          groups: testers
-          file: android/app/build/outputs/apk/debug/app-debug.apk
+  deploy-to-firebase:
+    needs: build-android
+    runs-on: ubuntu-latest
+    steps:
+        - name: Download APK Artifact
+          uses: actions/download-artifact@v4
+          with:
+              name: app-debug-apk
+              path: app/build/outputs/apk/debug/
+
+        - name: upload debug build to firebase app distribution
+          uses: wzieba/Firebase-Distribution-Github-Action@v1
+          with:
+            appId: ${{ secrets.FIREBASE_APP_ID }}
+            token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+            groups: testers
+            file: android/app/build/outputs/apk/debug/app-debug.apk
       
 
