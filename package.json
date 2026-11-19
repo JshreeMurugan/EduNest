@@ -14,7 +14,7 @@
     "cap:remove:android:platform:complete": "npx rimraf android && npm uninstall @capacitor/android",
     "cap:remove:ios:platform": "npx rimraf ios",
     "cap:remove:ios:platform:complete": "npx rimraf ios && npm uninstall @capacitor/ios",
-    "cap:build:android": "ionic cap sync android && cd android && ./gradlew clean assembleDebug && cd .."
+    "cap:build:android": "npx cap sync android && cd android && ./gradlew clean assembleDebug && cd .."
   },
   "private": true,
   "dependencies": {
