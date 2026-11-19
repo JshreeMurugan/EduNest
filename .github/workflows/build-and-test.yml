@@ -1,4 +1,4 @@
-name: Application Build and Test
+name: Application Test and Build
 on: 
   workflow_dispatch:
 jobs:
@@ -18,3 +18,14 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Build application
+        run: npm run build 
+  
+      - name: Add android platform
+        run: ionic cap add android
+      
+      - name: Build android platform
+        run: npm run cap:build:android
+      
+

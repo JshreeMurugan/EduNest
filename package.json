@@ -9,7 +9,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "cap:remove:android:platform": "npx rimraf android",
+    "cap:remove:android:platform:complete": "npx rimraf android && npm uninstall @capacitor/android",
+    "cap:remove:ios:platform": "npx rimraf ios",
+    "cap:remove:ios:platform:complete": "npx rimraf ios && npm uninstall @capacitor/ios",
+    "cap:build:android": "ionic cap sync android && cd android && ./gradlew clean assembleDebug && cd .."
   },
   "private": true,
   "dependencies": {
@@ -21,8 +26,9 @@
     "@angular/router": "22.1.7",
     "@capacitor/android": "8.5.3",
     "@capacitor/app": "8.1.2",
-    "@capacitor/core": "8.5.3",
+    "@capacitor/core": "^8.5.3",
     "@capacitor/haptics": "8.0.2",
+    "@capacitor/ios": "8.5.3",
     "@capacitor/keyboard": "8.0.6",
     "@capacitor/status-bar": "8.0.4",
     "@ionic/angular": "^9.0.0",
